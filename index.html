@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>quiz app</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: #3498db;
+        text-shadow: 0 0 2px;
+      }
+      .main {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      .header {
+        margin-bottom: 20px;
+        background: rgb(226, 230, 231);
+        box-shadow: 0 0 10px, inset 0 0 10px;
+        border-radius: 10px;
+      }
+      .header h2 {
+        padding: 10px 20px;
+      }
+      #box {
+        width: 40%;
+        padding: 15px;
+        box-shadow: 0 0 5px grey;
+        background-color: white;
+        box-shadow: 0 0 10px, inset 0 0 10px;
+        border-radius: 10px;
+      }
+      .row {
+        width: 100%;
+        margin: 2rem;
+        margin-left: 0;
+      }
+      .btn {
+        width: 100%;
+        padding: 5px;
+        font-size: 20px;
+        color: white;
+        background-color: #3498db;
+        border: none;
+        border-radius: 5px;
+      }
+      @media only screen and (min-width: 234px) and (max-width: 567px) {
+        #box {
+          width: 86%;
+        }
+        #box h2 {
+          font-size: 20px;
+        }
+        .footerbtn {
+          text-decoration: none;
+          color: black;
+          position: absolute;
+          bottom: 15px;
+          right: 30px;
+          background-color: rgb(68, 201, 224);
+          padding: 10px 20px;
+          border-radius: 10px;
+          box-shadow: 0 0 10px, inset 0 0 10px;
+        }
+
+        .fa-brands {
+          color: rgb(3, 88, 3);
+        }
+      }
+      .footerbtn {
+        text-decoration: none;
+        color: black;
+        position: absolute;
+        bottom: 15px;
+        right: 30px;
+        background-color: rgb(68, 201, 224);
+        padding: 10px 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px, inset 0 0 10px;
+      }
+
+      .fa-brands {
+        color: rgb(3, 88, 3);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="header"><h2 id="header">Number Series</h2></div>
+      <div id="box">
+        <h2 id="quesBox">1) this is a dummy question</h2>
+        <div class="row">
+          <input
+            class="options"
+            id="option1"
+            type="radio"
+            value="a"
+            name="option"
+          />
+          <label for="option1">Option 1 </label>
+        </div>
+        <div class="row">
+          <input
+            class="options"
+            id="option2"
+            type="radio"
+            value="b"
+            name="option"
+          />
+          <label for="option2">Option 2 </label>
+        </div>
+        <div class="row">
+          <input
+            class="options"
+            id="option3"
+            type="radio"
+            value="c"
+            name="option"
+          />
+          <label for="option3">Option 3 </label>
+        </div>
+        <div class="row">
+          <input
+            class="options"
+            id="option4"
+            type="radio"
+            value="d"
+            name="option"
+          />
+          <label for="option4">Option 4 </label>
+        </div>
+        <button onclick="submitQuiz()" class="btn">Submit</button>
+      </div>
+      <center>
+        <a
+          class="footerbtn"
+          href="whatsapp://send?text=share with your friends
+    https://gjhtgsxgg.blogspot.com/"
+          data-action="share/whatsapp/share"
+        >
+          <b style="font-size: 26px"
+            ><i class="fa-brands fa-whatsapp"></i>&nbsp;Share</b
+          >
+        </a>
+      </center>
+    </div>
+  </body>
+  <script>
+    const questions = [
+      {
+        que: "Look at this series: 12, 11, 13, 12, 14, 13, … What number should come next?",
+        a: "10",
+        b: "16",
+        c: "13",
+        d: "15",
+        correct: "d",
+      },
+      {
+        que: "Look at this series: 36, 34, 30, 28, 24, … What number should come next?",
+        a: "22",
+        b: "26",
+        c: "23",
+        d: "20",
+        correct: "a",
+      },
+      {
+        que: "Look at this series: 80, 10, 70, 15, 60, … What number should come next?",
+        a: "20",
+        b: "25",
+        c: "30",
+        d: "30",
+        correct: "a",
+      },
+      {
+        que: "Find the missing number 132, 156, ?, 210, 240, 272 ",
+        a: "196",
+        b: "182",
+        c: "199",
+        d: "204",
+        correct: "b",
+      },
+      {
+        que: "Find the missing number 4, 18, ?, 100, 180, 294, 448",
+        a: "48",
+        b: "50",
+        c: "58",
+        d: "60",
+        correct: "a",
+      },
+
+      {
+        que: "Find the wrong number in the given series 8, 27, 125, 343, 1381",
+        a: "27",
+        b: "8",
+        c: "343",
+        d: "1381",
+        correct: "d",
+      },
+      {
+        que: "Find the missing number 8, 15, 28, 53, ?, 199",
+        a: "101",
+        b: "102",
+        c: "103",
+        d: "104",
+        correct: "b",
+      },
+
+      {
+        que: "Find the wrong number in the series 3, 8, 15, 24, 34, 48, 63",
+        a: "15",
+        b: "24",
+        c: "34",
+        d: "48",
+        correct: "c",
+      },
+    ];
+    let index = 0;
+    let total = questions.length;
+    let right = 0,
+      wrong = 0;
+    const quesBox = document.getElementById("quesBox");
+    const optionInputs = document.querySelectorAll(".options");
+    console.log(optionInputs);
+    const loadQuestion = () => {
+      if (index === total) {
+        document.getElementById("header").style.display = "none";
+        return endquiz();
+      }
+      reset();
+      const data = questions[index];
+      quesBox.innerText = `${index + 1}) ${data.que}`;
+      optionInputs[0].nextElementSibling.innerText = data.a;
+      optionInputs[1].nextElementSibling.innerText = data.b;
+      optionInputs[2].nextElementSibling.innerText = data.c;
+      optionInputs[3].nextElementSibling.innerText = data.d;
+    };
+    const submitQuiz = () => {
+      const data = questions[index];
+      const ans = getAnswer();
+      if (ans === data.correct) {
+        right++;
+      } else {
+        wrong++;
+      }
+      index++;
+      loadQuestion();
+      return;
+    };
+    const getAnswer = () => {
+      let answer;
+      optionInputs.forEach((input) => {
+        if (input.checked) {
+          answer = input.value;
+        }
+      });
+      return answer;
+    };
+
+    const reset = () => {
+      optionInputs.forEach((input) => {
+        input.checked = false;
+      });
+    };
+    const endquiz = () => {
+      document.getElementById(
+        "box"
+      ).innerHTML = `<div style='text-align:center;'> <h3> Thanks for playing the quiz </h3>
+  <h2> ${right} / ${total} are correct</h2></div>`;
+    };
+
+    //initial value
+    loadQuestion();
+  </script>
+</html>
